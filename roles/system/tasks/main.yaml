@@ -2,6 +2,7 @@
   ansible.builtin.package:
     name:
       - curl
+      - mtr-tiny
       - nano
       - wget
     state: latest
