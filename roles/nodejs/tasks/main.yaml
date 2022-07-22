@@ -1,0 +1,11 @@
+---
+- name: Install
+  ansible.builtin.package:
+    name:
+      - nodejs
+    state: latest
+  become: yes
+
+- name: n install
+  shell: npm install -g n
+  become: yes
