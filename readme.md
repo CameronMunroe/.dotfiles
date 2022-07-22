@@ -13,7 +13,7 @@ git clone https://github.com/CameronMunroe/.dotfile.git
 
 ```
 cd ~/.dotfiles && git pull && cd ~/
-./dotfiles/bin/dotfiles
+.dotfiles/bin/dotfiles
 ```
 
 ## Meslo Theme For Windows.
