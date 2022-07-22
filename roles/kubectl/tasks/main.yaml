@@ -1,0 +1,18 @@
+- name: curl
+  ansible.builtin.package:
+    name:
+      - curl
+    state: latest
+  become: yes
+
+- name: kubectl
+  shell: curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+  become: yes
+
+- name: sha256
+  shell: curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+  become: yes
+
+- name: validate
+  shell: echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
+  become: yes
