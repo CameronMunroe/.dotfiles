@@ -1,7 +1,8 @@
----
-- name: Install
+- name: default packages
   ansible.builtin.package:
     name:
-      - htop
+      - curl
+      - nano
+      - wget
     state: latest
   become: yes

@@ -1,9 +1,0 @@
----
-- name: install
-  ansible.builtin.package:
-    name:
-      - nano
-    state: latest
-  become: yes
-
-# TODO: Need to set nano as default editor. 
