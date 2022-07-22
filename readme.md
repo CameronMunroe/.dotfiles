@@ -6,7 +6,7 @@ Please don't use me without first changing settings. Many of these settings are 
 
 ```
 git clone https://github.com/CameronMunroe/.dotfiles.git
-./dotfiles/bin/dotfiles
+.dotfiles/bin/dotfiles
 ```
 
 ## Upgrade
