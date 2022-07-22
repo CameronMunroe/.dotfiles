@@ -1,12 +1,12 @@
 ---
-- name: Install Node
+- name: node install
   ansible.builtin.package:
     name:
       - nodejs
     state: latest
   become: yes
 
-- name: Install NPM
+- name: npm install
   ansible.builtin.package:
     name:
       - npm
@@ -15,4 +15,12 @@
 
 - name: n install
   shell: npm install -g n
+  become: yes
+
+- name: n install lts
+  shell: n install lts
+  become: yes
+
+- name: n lts
+  shell: n lts
   become: yes
