@@ -2,6 +2,7 @@ default_roles:
   - git
   - htop
   - kubectl
+  - nano
   - node
   - oh-my-zsh
   - zsh
