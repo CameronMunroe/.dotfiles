@@ -5,6 +5,8 @@ SSH_DIR="${HOME}/.ssh"
 DOTFILES_DIR="${HOME}/.dotfiles"
 VALUES_DIR="${HOME}/.config/dotfiles"
 
+sudo uptime
+
 # Validate that we have pip3 installed.
 if ! [ -x "$(command -v pip3)" ]; then
     sudo apt install python3-pip -y
