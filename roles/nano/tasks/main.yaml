@@ -5,3 +5,5 @@
       - nano
     state: latest
   become: yes
+
+# TODO: Need to set nano as default editor. 
