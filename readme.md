@@ -5,7 +5,7 @@ Please don't use me without first changing settings. Many of these settings are 
 ## Install 
 
 ```
-git clone https://github.com/CameronMunroe/.dotfile.git
+git clone https://github.com/CameronMunroe/.dotfiles.git
 ./dotfiles/bin/dotfiles
 ```
 
