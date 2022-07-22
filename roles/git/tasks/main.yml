@@ -40,11 +40,11 @@
   community.general.git_config:
     name: user.email
     scope: global
-    value: "cm@munroenet.com"
+    value: "{{ git_user_email }}"
   no_log: true
 
 - name: Set user.name
   community.general.git_config:
     name: user.name
     scope: global
-    value: "Cameron Munroe"
+    value: "{{ git_user_name }}"
