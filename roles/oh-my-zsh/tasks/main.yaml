@@ -28,7 +28,7 @@
 - name: Copy .p10k.zsh
   ansible.builtin.template:
     dest: "{{ ansible_user_dir }}/.p10k.zsh"
-    src: p10k.zsh
+    src: p10k.j2
 
 - name: Clone zsh-autosuggestions
   ansible.builtin.git:
