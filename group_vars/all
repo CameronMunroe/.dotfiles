@@ -1,5 +1,4 @@
 default_roles:
   - htop
-  - k9s
   - zsh
   - oh-my-zsh
