@@ -1,4 +1,5 @@
 default_roles:
+  - git
   - htop
-  - zsh
   - oh-my-zsh
+  - zsh
