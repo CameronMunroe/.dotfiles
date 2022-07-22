@@ -5,32 +5,35 @@ SSH_DIR="${HOME}/.ssh"
 DOTFILES_DIR="${HOME}/.dotfiles"
 VALUES_DIR="${HOME}/.config/dotfiles"
 
+# Forcefully launch sudo using uptime as a sacrafice. 
 sudo uptime
 
 # Validate that we have pip3 installed.
 if ! [ -x "$(command -v pip3)" ]; then
+
     sudo apt install python3-pip -y
+    
 fi
 
 # Validate we have ansible installed.
 if ! [ -x "$(command -v ansible)" ]; then
+
     sudo pip3 install ansible
+
 fi
 
 # Generate a ssh key for ansible.
 if ! [[ -f "$SSH_DIR/id_rsa" ]]; then
+
     mkdir -p ${SSH_DIR}
-
     chmod 700 ${SSH_DIR}
-
     ssh-keygen -b 4096 -t rsa -f "${SSH_DIR}/id_rsa" -N "" -C "$USER@$HOSTNAME"
-
     cat "${SSH_DIR}/id_rsa.pub" > "${SSH_DIR}/authorized_keys"
-
     chmod 600 "${SSH_DIR}/authorized_keys"
 
 fi
 
+# Inject our Values. 
 if ! [[ -f "$VALUES_DIR/values.yaml" ]]; then
 
     mkdir -p ${VALUES_DIR}
