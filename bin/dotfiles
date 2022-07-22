@@ -29,7 +29,7 @@ if ! [[ -f "$SSH_DIR/id_rsa" ]]; then
 
 fi
 
-if ! [[ -f "$VALUES_DIR/values.yaml"]]; then
+if ! [[ -f "$VALUES_DIR/values.yaml" ]]; then
 
     cp $DOTFILES_DIR/values.yaml $VALUES_DIR/values.yaml
 
