@@ -31,6 +31,7 @@ fi
 
 if ! [[ -f "$VALUES_DIR/values.yaml" ]]; then
 
+    mkdir -p ${VALUES_DIR}
     cp $DOTFILES_DIR/values.yaml $VALUES_DIR/values.yaml
 
 fi
