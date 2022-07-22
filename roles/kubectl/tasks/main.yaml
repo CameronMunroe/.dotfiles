@@ -16,3 +16,19 @@
 - name: validate
   shell: echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
   become: yes
+
+- name: copy
+  shell: cp kubectl /usr/local/bin/
+  become: yes
+
+- name: +x
+  shell: chmod +x /usr/local/bin/kubectl
+  become: yes
+
+- name: cleanup kubectl.sha256
+  shell: rm -rf kubectl.sha256
+  become: yes
+
+- name: cleanup kubectl
+  shell: rm -rf kubectl
+  become: yes
