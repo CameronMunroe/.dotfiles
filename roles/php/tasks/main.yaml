@@ -1,1 +1,11 @@
-# Todo: Install php-cli
+- name: default packages
+  ansible.builtin.package:
+    name:
+      - php-cli
+      - php-curl
+      - php-mysql
+      - php-pgsql
+    state: latest
+  become: yes
+
+# Todo: Get further packages I regularly use. 
