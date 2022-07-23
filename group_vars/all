@@ -3,5 +3,6 @@ default_roles:
   - git
   - kubectl
   - node
+  - php
   - zsh
   - oh-my-zsh
