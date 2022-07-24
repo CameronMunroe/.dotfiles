@@ -1,22 +1,33 @@
-- name: add repo
-  shell: source /etc/os-release && echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/ /" > /etc/apt/sources.list.d/podman.list
-  args: 
-    executable: /bin/bash
+- name: tempfile
+  ansible.builtin.tempfile: 
+    prefix: .fetched_
+    state: file
+  register: tempfile
+
+- name: get os-release
+  ansible.builtin.fetch:
+    src: /etc/os-release
+    dest: "{{ tempfile.path }}"
+    flat: yes
+  register: fetched
+
+- name: set version_id
+  ansible.builtin.set_fact:
+    version_id: "{{ lookup('ini', 'VERSION_ID type=properties file=' + fetched_dest) }}"
+
+- name: add repository
+  ansible.builtin.apt_repository:
+    repo: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_{{version_id}}/ /
+    state: present
   become: yes
 
-- name: add repo key
-  shell: source /etc/os-release && curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/Release.key | apt-key add -
-  args: 
-    executable: /bin/bash
-  become: yes
+- name: add repository key
+  ansible.builtin.apt_key:
+    url: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_{{version_id}}/Release.key
+    state: present
 
-- name: apt-update
-  shell: apt update
-  become: yes
-
-- name: install podman
-  ansible.builtin.package:
-    name:
-      - podman
+- name: Install
+  ansible.builtin.apt:
+    name: podman
     state: latest
-  become: yes
+    update_cache: true
