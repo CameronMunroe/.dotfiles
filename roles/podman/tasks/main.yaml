@@ -16,14 +16,20 @@
     version_id: "{{ lookup('ini', 'VERSION_ID type=properties file=' + fetched.dest) }}"
 
 - name: add repository
+  vars:
+    regex: "[`'\"]"
+    replace: ""
   ansible.builtin.apt_repository:
-    repo: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_{{version_id}}/ /
+    repo: deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_{{version_id|regex_replace(regex, replace)}}/ /
     state: present
   become: yes
 
 - name: add repository key
+  vars:
+    regex: "[`'\"]"
+    replace: ""
   ansible.builtin.apt_key:
-    url: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_{{version_id}}/Release.key
+    url: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_{{version_id|regex_replace(regex, replace)}}/Release.key
     state: present
   become: yes
 
