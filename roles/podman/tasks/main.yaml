@@ -1,5 +1,5 @@
 - name: add repo
-  shell: source /etc/os-release && echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/ /" > /etc/apt/sources.list.d/podman
+  shell: source /etc/os-release && echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/ /" > /etc/apt/sources.list.d/podman.list
   args: 
     executable: /bin/bash
   become: yes
