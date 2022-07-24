@@ -13,7 +13,7 @@
 
 - name: set version_id
   ansible.builtin.set_fact:
-    version_id: "{{ lookup('ini', 'VERSION_ID type=properties file=' + fetched_dest) }}"
+    version_id: "{{ lookup('ini', 'VERSION_ID type=properties file=' + fetched.dest) }}"
 
 - name: add repository
   ansible.builtin.apt_repository:
@@ -25,9 +25,11 @@
   ansible.builtin.apt_key:
     url: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_{{version_id}}/Release.key
     state: present
+  become: yes
 
 - name: Install
   ansible.builtin.apt:
     name: podman
     state: latest
     update_cache: true
+  become: yes
