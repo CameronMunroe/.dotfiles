@@ -5,7 +5,9 @@
   become: yes
 
 - name: add repo key
-  shell: curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/Release.key | apt-key add -
+  shell: source /etc/os-release && curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/Release.key | apt-key add -
+  args: 
+    executable: /bin/bash
   become: yes
 
 - name: apt-update
