@@ -15,15 +15,6 @@
   ansible.builtin.set_fact:
     version_id: "{{ lookup('ini', 'VERSION_ID type=properties file=' + fetched.dest) }}"
 
-- name: add repository
-  vars:
-    regex: "[`'\"]"
-    replace: ""
-  ansible.builtin.apt_repository:
-    repo: deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_{{version_id|regex_replace(regex, replace)}}/ /
-    state: present
-  become: yes
-
 - name: add repository key
   vars:
     regex: "[`'\"]"
@@ -33,9 +24,19 @@
     state: present
   become: yes
 
+- name: add repository
+  vars:
+    regex: "[`'\"]"
+    replace: ""
+  ansible.builtin.apt_repository:
+    repo: deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_{{version_id|regex_replace(regex, replace)}}/ /
+    filename: podman
+    state: present
+    update_cache: true
+  become: yes
+
 - name: Install
   ansible.builtin.apt:
     name: podman
     state: latest
-    update_cache: true
   become: yes
