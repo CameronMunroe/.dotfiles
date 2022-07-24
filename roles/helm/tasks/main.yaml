@@ -1,0 +1,19 @@
+- name: add repository key
+  ansible.builtin.apt_key:
+    url: https://baltocdn.com/helm/signing.asc
+    state: present
+  become: yes
+
+- name: add repository
+  ansible.builtin.apt_repository:
+    repo: deb https://baltocdn.com/helm/stable/debian/ all main
+    filename: helm
+    state: present
+    update_cache: true
+  become: yes
+
+- name: install
+  ansible.builtin.apt:
+    name: helm
+    state: latest
+  become: yes
