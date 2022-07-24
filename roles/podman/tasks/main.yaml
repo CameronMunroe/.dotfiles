@@ -1,3 +1,18 @@
-# Todo: need to create installer for podman.
+- name: add repo
+  shell: source /etc/os-release && echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/ /" > /etc/apt/sources.list.d/podman
+  become: yes
 
-# Todo: need to create alias for podman as docker.
+- name: add repo key
+  shell: curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/Release.key | apt-key add -
+  become: yes
+
+- name: apt-update
+  shell: apt update
+  become: yes
+
+- name: install podman
+  ansible.builtin.package:
+    name:
+      - podman
+    state: latest
+  become: yes
