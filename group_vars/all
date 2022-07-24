@@ -4,5 +4,6 @@ default_roles:
   - kubectl
   - node
   - php
+  - podman
   - zsh
   - oh-my-zsh
