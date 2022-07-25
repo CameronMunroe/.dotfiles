@@ -1,7 +1,9 @@
 - name: default packages
   ansible.builtin.package:
     name:
+      - apt-transport-https
       - curl
+      - ca-certificates
       - mtr-tiny
       - nano
       - wget
