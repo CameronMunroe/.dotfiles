@@ -6,6 +6,7 @@
       - ca-certificates
       - mtr-tiny
       - nano
+      - sshpass
       - wget
     state: latest
   become: yes
